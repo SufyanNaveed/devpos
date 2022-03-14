@@ -1,0 +1,95 @@
+
+CREATE TABLE `bookings` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `pet_id` bigint unsigned NOT NULL,
+  `doctor_id` bigint unsigned NOT NULL,
+  `speciality_id` bigint unsigned NOT NULL,
+  `on` date DEFAULT NULL,
+  `from` time DEFAULT NULL,
+  `to` time DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `user_id` bigint unsigned DEFAULT NULL,
+  `status` enum('Awaiting_Payment','Paid','Completed','Cancelled after payment','Cancelled before payment') DEFAULT 'Awaiting_Payment',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `advisor_availabilities` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `day` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `from` time NOT NULL,
+  `to` time NOT NULL,
+  `advisor_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_available` tinyint DEFAULT '0',
+  `time` enum('morning','evening') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+
+
+CREATE TABLE `advisor_specialities` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `advisor_id` bigint unsigned NOT NULL,
+  `status` tinyint DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+Added new Column whatsapp link in below table
+----------
+
+
+CREATE TABLE `geopos_employees` (
+  `id` int NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `region` varchar(50) DEFAULT NULL,
+  `country` varchar(50) DEFAULT NULL,
+  `postbox` varchar(20) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `phonealt` varchar(15) DEFAULT NULL,
+  `picture` varchar(50) NOT NULL DEFAULT 'example.png',
+  `sign` varchar(100) DEFAULT 'sign.png',
+  `joindate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dept` int DEFAULT NULL,
+  `degis` int DEFAULT NULL,
+  `salary` decimal(16,2) DEFAULT '0.00',
+  `clock` int DEFAULT NULL,
+  `clockin` int DEFAULT NULL,
+  `clockout` int DEFAULT NULL,
+  `c_rate` decimal(16,2) DEFAULT NULL,
+  `whatsapp_link` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+
+column changes
+------------------------
+
+
+
+
+CREATE TABLE `pos_pets` (
+  `pet_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `pet_photo` text,
+  `pet_color` bigint unsigned NOT NULL,
+  `microchip_number` text,
+  `date_of_birth` varchar(10) DEFAULT NULL,
+  `mark_difference` varchar(19) DEFAULT NULL,
+  `pet_breed` bigint unsigned DEFAULT NULL,
+  `pet_type` bigint unsigned NOT NULL,
+  `pet_name` varchar(100) DEFAULT NULL,
+  `status` tinyint NOT NULL DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pet_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

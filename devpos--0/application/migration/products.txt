@@ -1,0 +1,45 @@
+ALTER TABLE `geopos_products` ADD `daily_feed` INT(11) NOT NULL AFTER `b_id`;
+ALTER TABLE `geopos_products` ADD `created_at` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `daily_feed`;
+CREATE TABLE `geopos_services` (
+  `pid` int(11) NOT NULL,
+  `pcat` int(3) NOT NULL DEFAULT 1,
+  `warehouse` int(11) NOT NULL DEFAULT 1,
+  `service_name` varchar(80) NOT NULL,
+  `service_code` varchar(30) DEFAULT NULL,
+  `service_price` decimal(16,2) DEFAULT 0.00,
+  `taxrate` decimal(16,2) DEFAULT 0.00,
+  `disrate` decimal(16,2) DEFAULT 0.00,
+  `service_des` text DEFAULT NULL,
+  `image` varchar(120) DEFAULT 'default.png',
+  `barcode` varchar(16) DEFAULT NULL,
+  `sub` int(11) NOT NULL,
+  `expiry` date DEFAULT NULL,
+  `code_type` varchar(8) DEFAULT 'EAN13',
+  `sub_id` int(11) DEFAULT 0,
+  `created_at` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `geopos_service_cat` (
+  `id` int(3) NOT NULL AUTO_INCREMENT , add PRIMARY KEY (`id`),
+  `title` varchar(100) NOT NULL,
+  `extra` varchar(255) DEFAULT NULL,
+  `c_type` int(2) DEFAULT 0,
+  `rel_id` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `geopos_service_cat` CHANGE `id` `id` INT(3) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`);
+ALTER TABLE `geopos_invoice_items` ADD `sid` INT(11) NOT NULL AFTER `pid`;
+
+
+
+CREATE TABLE `geopos_batches` (
+  `id` int(11) NOT NULL,
+  `pid` int(3) NOT NULL,
+  `name` varchar(80) NOT NULL,
+  `code` varchar(30) DEFAULT NULL,
+  `price` decimal(16,2) DEFAULT 0.00,
+  `qty` decimal(16,2) DEFAULT 0.00,
+  `dead_items` decimal(16,2) DEFAULT 0.00,
+  `des` text DEFAULT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

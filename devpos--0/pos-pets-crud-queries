@@ -1,0 +1,67 @@
+CREATE TABLE `pos_pets` (
+  `pet_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `pet_photo` text,
+  `pet_color` bigint unsigned NOT NULL,
+  `microchip_number` text,
+  `date_of_birth` varchar(10) DEFAULT NULL,
+  `mark_difference` varchar(19) DEFAULT NULL,
+  `pet_breed` bigint unsigned DEFAULT NULL,
+  `pet_type` bigint unsigned NOT NULL,
+  `pet_name` varchar(100) DEFAULT NULL,
+  `status` tinyint NOT NULL DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pet_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+CREATE TABLE `pos_pet_types` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `slug` text,
+  `status` tinyint DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `pos_pet_mark_difference` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `slug` text,
+  `status` tinyint DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `pos_pet_color` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `slug` text,
+  `status` tinyint DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `pos_pet_breeds` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `slug` text,
+  `status` tinyint DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+CREATE TABLE `pos_customer_pets` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `customer_id` int unsigned DEFAULT NULL,
+  `pet_id` int unsigned DEFAULT NULL,
+  `slug` text,
+  `status` tinyint DEFAULT '1',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `added_by` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
