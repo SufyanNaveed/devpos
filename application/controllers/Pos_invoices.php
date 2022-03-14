@@ -394,7 +394,7 @@ class Pos_invoices extends CI_Controller
                             'subtotal' => rev_amountExchange_s($product_subtotal[$key], $currency, $this->aauth->get_user()->loc),
                             'totaltax' => rev_amountExchange_s($ptotal_tax[$key], $currency, $this->aauth->get_user()->loc),
                             'totaldiscount' => rev_amountExchange_s($ptotal_disc[$key], $currency, $this->aauth->get_user()->loc),
-                            'product_des' => $product_des[$key],
+                            'product_des' => count($product_des) > 0 ? $product_des[$key] : '',
                             'i_class' => 1,
                             'unit' => $product_unit[$key],
                             'serial' => $product_serial[$key]
